@@ -10,7 +10,9 @@ class Register extends Component {
             sobrenome: "",
             email: "",
             dataDeNascimento: "",
-            senha: ""
+            senha: "",
+            confirmarSenha: "",
+            errorMessage: ""
         };
 
         this.gravar = this.gravar.bind(this);
@@ -20,10 +22,20 @@ class Register extends Component {
         console.log(this.state);
         event.preventDefault();
 
-        const { nome, sobrenome, email, dataDeNascimento, senha } = this.state;
+        const { nome, sobrenome, email, dataDeNascimento, senha, confirmarSenha } = this.state;
 
-        if (!nome || !sobrenome || !email || !dataDeNascimento || !senha) {
-            alert("Por favor, preencha todos os campos.");
+        if (!nome || !sobrenome || !email || !dataDeNascimento || !senha || !confirmarSenha) {
+            this.setState({ errorMessage: "Preencha todos os campos." });
+            return;
+        }
+
+        if (senha !== confirmarSenha) {
+            this.setState({ errorMessage: "As senhas não conferem." });
+            return;
+        }
+
+        if(senha.length < 6){
+            this.setState({ errorMessage: "A senha deve ter no mínimo 6 caracteres." });
             return;
         }
 
@@ -31,7 +43,7 @@ class Register extends Component {
             const userExists = await Firebase.firestore().collection("usuarios").where("email", "==", email).get();
 
             if (!userExists.empty) {
-                alert("Este email já está cadastrado. Por favor, use outro email.");
+                this.setState({ errorMessage: "Este email já está cadastrado." });
                 return;
             }
 
@@ -49,6 +61,7 @@ class Register extends Component {
             this.props.navigate("/");
         } catch (error) {
             console.log(error);
+            this.setState({ errorMessage: "Ocorreu um erro ao cadastrar o usuário." });
         }
     }
 
@@ -56,8 +69,8 @@ class Register extends Component {
         return (
             <div className="App">
                 <div className="container">
-                    <h2>Cadastro</h2>
                     <form className="form-group">
+                        <h2>Cadastro</h2>
                         <input
                             type="text"
                             placeholder="Nome"
@@ -83,7 +96,15 @@ class Register extends Component {
                             placeholder="Senha"
                             onChange={(e) => this.setState({ senha: e.target.value })}
                         />
+                         <input
+                            type="password"
+                            placeholder="Confirmar Senha"
+                            onChange={(e) => this.setState({ confirmarSenha: e.target.value })}
+                        />
                         <button onClick={(event) => this.gravar(event)}>Cadastrar</button>
+                        {this.state.errorMessage && (
+                            <div className="alert">{this.state.errorMessage}</div>
+                        )}
                     </form>
                 </div>
             </div>

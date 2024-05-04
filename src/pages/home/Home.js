@@ -44,11 +44,9 @@ class Home extends React.Component {
         return (
             <div className="App">
                 <div className="container">
-                    <div className="card-header">
-                        <h3>Usuário</h3>
-                    </div>
                     <div className="card-body">
-                        <p>Nome: {this.state.nome + " " + this.state.sobrenome}!</p>
+                        <h2>Usuário</h2>
+                        <p>Nome: {this.state.nome + " " + this.state.sobrenome}</p>
                         <p> Data de nascimento: {this.formatDate(this.state.dataDeNascimento)}</p>
                     </div>
                 </div>

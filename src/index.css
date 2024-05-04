@@ -17,34 +17,38 @@ code {
   flex-direction: column;
   align-items: center; 
   justify-content: center; 
-  width: 100%;
+  width: 100vw;
   height: 100vh; 
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  gap: 0.5rem; 
+  align-items: center;
+  width: 20%;
+  gap: 0.8rem; 
   padding: 1rem; 
-  border: 1px solid #ccc; 
+  border: 1px solid #0f0f0fdc; 
   border-radius: 5px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+.form-group h2 {
+  color: #7308ffdc;
 }
 
 input {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 3px;
+  width: 100%; /* Alteração para ocupar a largura total do form-group */
 }
 
 button {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 3px;
-}
-
-button {
+  width: 50%; /* Alteração para ocupar a largura total do form-group */
   background-color: #7308ffdc;
   color: #fff;
   cursor: pointer;
@@ -54,26 +58,32 @@ button:hover {
   background-color: #491194dc;
 }
 
-.card-header{
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  gap: 0.5rem; 
-  padding: 1rem; 
-  border: 1px solid #ccc; 
-  border-radius: 5px; 
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  background-color: #7308ffdc;
+.alert {
+  color: red ;
 }
 
-.card-body{
+.card-body {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  gap: 0.5rem; 
-  padding: 1rem; 
-  border: 1px solid #ccc; 
+  align-items: center;
+  width: 25%;
+  border: 1px solid #0f0f0fdc; 
   border-radius: 5px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  padding: 1rem 0 1rem 0;  
+}
+
+.card-body p {
+  border: 1px solid #0f0f0fdc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  width: 50%;
+  padding: 0.5rem;
+  background-color: #7308ffdc;
+  color: white;
+}
+
+.card-body h2 {
+  color: #7308ffdc;
 }
 

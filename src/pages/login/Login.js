@@ -7,7 +7,8 @@ class Login extends Component {
     super(props);
     this.state = {
       email: "",
-      senha: ""
+      senha: "",
+      errorMessage: "",
     };
   }
 
@@ -16,7 +17,7 @@ class Login extends Component {
     console.log(this.state);
     const { email, senha } = this.state;
     if (!email || !senha) {
-      alert("Por favor, preencha todos os campos.");
+      this.setState({ errorMessage: "Preencha todos os campos." });
       return;
     }
     try{
@@ -33,8 +34,8 @@ class Login extends Component {
     return (
       <div className="App">
         <div className="container">
-          <h2>Login</h2>
           <form className="form-group">
+            <h2>Login</h2>
             <input
               type="text"
               placeholder="Email"
@@ -46,7 +47,10 @@ class Login extends Component {
               onChange={(e) => this.setState({ senha: e.target.value })}
             />
             <button onClick={(event) => this.login(event)}>Login</button>
-            <p>Não tem uma conta? <Link to="/register">Registre-se</Link></p>
+            <p>Não tem uma conta? <Link style={{color: '#7308ffdc', textDecoration: 'none'}} to="/cadastro">Registre-se</Link></p>
+            {this.state.errorMessage && (
+              <div className="alert">{this.state.errorMessage}</div>
+            )}
           </form>
         </div>
       </div>
