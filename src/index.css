@@ -45,13 +45,13 @@ button {
 }
 
 button {
-  background-color: #007bff;
+  background-color: #7308ffdc;
   color: #fff;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #491194dc;
 }
 
 .card-header{
@@ -63,7 +63,7 @@ button:hover {
   border: 1px solid #ccc; 
   border-radius: 5px; 
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
-  background-color: #007bff;
+  background-color: #7308ffdc;
 }
 
 .card-body{
